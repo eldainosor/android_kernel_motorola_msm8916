@@ -504,7 +504,10 @@ static inline long copy_from_user_preempt_disabled(void *to, const void __user *
 ({						\
 	int __ret;				\
 	preempt_enable_no_resched();		\
+<<<<<<< HEAD
 	barrier();				\
+=======
+>>>>>>> d594c65... android: binder: Disable preemption while holding the global binder lock.
 	__ret = get_user(x, ptr);		\
 	preempt_disable();			\
 	__ret;					\
@@ -514,7 +517,10 @@ static inline long copy_from_user_preempt_disabled(void *to, const void __user *
 ({						\
 	int __ret;				\
 	preempt_enable_no_resched();		\
+<<<<<<< HEAD
 	barrier();				\
+=======
+>>>>>>> d594c65... android: binder: Disable preemption while holding the global binder lock.
 	__ret = put_user(x, ptr);		\
 	preempt_disable();			\
 	__ret;					\
@@ -705,6 +711,7 @@ static int binder_update_page_range(struct binder_proc *proc, int allocate,
 		}
 		/* vm_insert_page does not seem to increment the refcount */
 	}
+	preempt_disable();
 	if (mm) {
 		up_write(&mm->mmap_sem);
 		mmput(mm);
@@ -728,6 +735,7 @@ err_alloc_page_failed:
 		;
 	}
 err_no_vma:
+	preempt_disable();
 	if (mm) {
 		up_write(&mm->mmap_sem);
 		mmput(mm);
@@ -2260,7 +2268,6 @@ static void binder_transaction(struct binder_proc *proc,
 	if (target_wait) {
 		if (reply || !(t->flags & TF_ONE_WAY)) {
 			wake_up_interruptible_sync(target_wait);
-			sched_preempt_enable_no_resched();
 		} else {
 			wake_up_interruptible(target_wait);
 		}
