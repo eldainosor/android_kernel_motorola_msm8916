@@ -447,9 +447,13 @@ static void esp6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 		return;
 
 	if (type == NDISC_REDIRECT)
-		ip6_redirect(skb, net, 0, 0);
+		ip6_redirect(skb, net, 0, 0, sock_net_uid(net, NULL));
 	else
+<<<<<<< HEAD
 		ip6_update_pmtu(skb, net, info, 0, 0, INVALID_UID);
+=======
+		ip6_update_pmtu(skb, net, info, 0, 0, sock_net_uid(net, NULL));
+>>>>>>> b5760d1... net: inet: Support UID-based routing in IP protocols.
 	xfrm_state_put(x);
 }
 
