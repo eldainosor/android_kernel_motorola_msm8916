@@ -562,13 +562,8 @@ static void build_sk_flow_key(struct flowi4 *fl4, const struct sock *sk)
 			   RT_CONN_FLAGS(sk), RT_SCOPE_UNIVERSE,
 			   inet->hdrincl ? IPPROTO_RAW : sk->sk_protocol,
 			   inet_sk_flowi_flags(sk),
-<<<<<<< HEAD
-                           daddr, inet->inet_saddr, 0, 0);
+                           daddr, inet->inet_saddr, 0, 0, sk->sk_uid);
   	rcu_read_unlock();
-=======
-			   daddr, inet->inet_saddr, 0, 0, sk->sk_uid);
-	rcu_read_unlock();
->>>>>>> b5760d1... net: inet: Support UID-based routing in IP protocols.
 }
 
 static void ip_rt_build_flow_key(struct flowi4 *fl4, const struct sock *sk,
