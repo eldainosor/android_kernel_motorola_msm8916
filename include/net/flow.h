@@ -97,11 +97,8 @@ static inline void flowi4_init_output(struct flowi4 *fl4, int oif,
 				      __u32 mark, __u8 tos, __u8 scope,
 				      __u8 proto, __u8 flags,
 				      __be32 daddr, __be32 saddr,
-<<<<<<< HEAD
-=======
-				      __be16 dport, __be16 sport,
+                                      __be16 dport, __be16 sport,
 				      kuid_t uid)
->>>>>>> b5760d1... net: inet: Support UID-based routing in IP protocols.
 {
 	fl4->flowi4_oif = oif;
 	fl4->flowi4_iif = LOOPBACK_IFINDEX;
