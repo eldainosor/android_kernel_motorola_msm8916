@@ -2636,15 +2636,6 @@ static int inet6_rtm_getroute(struct sk_buff *in_skb, struct nlmsghdr* nlh)
 	if (tb[RTA_OIF])
 		oif = nla_get_u32(tb[RTA_OIF]);
 
-<<<<<<< HEAD
-	if (tb[RTA_UID])
-		fl6.flowi6_uid = make_kuid(current_user_ns(),
-					   nla_get_u32(tb[RTA_UID]));
-	else
-		fl6.flowi6_uid = iif ? INVALID_UID : current_uid();
-
-=======
->>>>>>> 08d03c6... Revert "net: core: Support UID-based routing."
 	if (iif) {
 		struct net_device *dev;
 		int flags = 0;
