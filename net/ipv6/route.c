@@ -1171,11 +1171,7 @@ EXPORT_SYMBOL_GPL(ip6_update_pmtu);
 void ip6_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, __be32 mtu)
 {
 	ip6_update_pmtu(skb, sock_net(sk), mtu,
-<<<<<<< HEAD
-			sk->sk_bound_dev_if, sk->sk_mark, sock_i_uid(sk));
-=======
-			sk->sk_bound_dev_if, sk->sk_mark, sk->sk_uid);
->>>>>>> b5760d1... net: inet: Support UID-based routing in IP protocols.
+                        sk->sk_bound_dev_if, sk->sk_mark, sk->sk_uid);
 }
 EXPORT_SYMBOL_GPL(ip6_sk_update_pmtu);
 
