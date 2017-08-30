@@ -179,26 +179,6 @@ void fib_rules_unregister(struct fib_rules_ops *ops)
 }
 EXPORT_SYMBOL_GPL(fib_rules_unregister);
 
-<<<<<<< HEAD
-static inline kuid_t fib_nl_uid(struct nlattr *nla)
-{
-	return make_kuid(current_user_ns(), nla_get_u32(nla));
-}
-
-static int nla_put_uid(struct sk_buff *skb, int idx, kuid_t uid)
-{
-	return nla_put_u32(skb, idx, from_kuid_munged(current_user_ns(), uid));
-}
-
-static int fib_uid_range_match(struct flowi *fl, struct fib_rule *rule)
-{
-	return (!uid_valid(rule->uid_start) && !uid_valid(rule->uid_end)) ||
-	       (uid_gte(fl->flowi_uid, rule->uid_start) &&
-		uid_lte(fl->flowi_uid, rule->uid_end));
-}
-
-=======
->>>>>>> 08d03c6... Revert "net: core: Support UID-based routing."
 static int fib_rule_match(struct fib_rule *rule, struct fib_rules_ops *ops,
 			  struct flowi *fl, int flags)
 {
