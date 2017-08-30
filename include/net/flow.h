@@ -11,7 +11,6 @@
 #include <linux/in6.h>
 #include <linux/atomic.h>
 #include <linux/uidgid.h>
-<<<<<<< HEAD
 
 /*
  * ifindex generation is per-net namespace, and loopback is
@@ -20,8 +19,6 @@
  */
 
 #define LOOPBACK_IFINDEX	1
-=======
->>>>>>> ec9b7d0... net: core: add UID to flows, rules, and routes
 
 /*
  * ifindex generation is per-net namespace, and loopback is
