@@ -560,13 +560,8 @@ static void build_sk_flow_key(struct flowi4 *fl4, const struct sock *sk)
 			   RT_CONN_FLAGS(sk), RT_SCOPE_UNIVERSE,
 			   inet->hdrincl ? IPPROTO_RAW : sk->sk_protocol,
 			   inet_sk_flowi_flags(sk),
-<<<<<<< HEAD
-			   daddr, inet->inet_saddr, 0, 0,
-			   sock_i_uid(sk));
-=======
-			   daddr, inet->inet_saddr, 0, 0);
->>>>>>> 08d03c6... Revert "net: core: Support UID-based routing."
-	rcu_read_unlock();
+                           daddr, inet->inet_saddr, 0, 0);
+  	rcu_read_unlock();
 }
 
 static void ip_rt_build_flow_key(struct flowi4 *fl4, const struct sock *sk,
@@ -2332,14 +2327,6 @@ static int rt_fill_info(struct net *net,  __be32 dst, __be32 src,
 	    nla_put_u32(skb, RTA_MARK, fl4->flowi4_mark))
 		goto nla_put_failure;
 
-<<<<<<< HEAD
-	if (!uid_eq(fl4->flowi4_uid, INVALID_UID) &&
-	    nla_put_u32(skb, RTA_UID,
-			from_kuid_munged(current_user_ns(), fl4->flowi4_uid)))
-		goto nla_put_failure;
-
-=======
->>>>>>> 08d03c6... Revert "net: core: Support UID-based routing."
 	error = rt->dst.error;
 
 	if (rt_is_input_route(rt)) {
